@@ -1,2 +1,2 @@
 # adventofcode2017
-Puzzle solution of http://adventofcode.com/2017 in Kotlin
+Puzzle solutions of http://adventofcode.com/2017 in Kotlin
