@@ -31,19 +31,19 @@ object Puzzle01 {
     private val results2 = listOf(6, 0, 4, 12, 4)
 
 
-    fun doSolve(numbers: CharArray, f: (CharArray) -> Int): Int {
-        val offset = f(numbers)
+    fun doSolve(numbers: CharArray, offset: Int): Int {
         return (0 until numbers.size)
                 .filter { numbers[it] == numbers[(it + offset) % numbers.size] }
                 .sumBy { numbers[it] - '0' }
     }
 
     private fun solve1(input: String): Int {
-        return doSolve(input.toCharArray(), {1})
+        return doSolve(input.toCharArray(), 1)
     }
 
     private fun solve2(input: String): Int {
-        return doSolve(input.toCharArray(), {it.size / 2})
+        val numbers = input.toCharArray()
+        return doSolve(numbers, numbers.size / 2)
     }
 
     @JvmStatic
