@@ -25,23 +25,20 @@ object Puzzle02 {
 
     val sample2 = "5\t9\t2\t8\n9\t4\t7\t3\n3\t8\t6\t5\n"
 
-    private fun String.convert(): Array<Array<Int>> {
+    private fun String.convert(): List<List<Int>> {
         return this
                 .split("\n")
                 .dropLastWhile { it.isEmpty() }
                 .map { it.split("\t").map { it.toInt() } }
-                .map { it.sortedBy { -it }.toTypedArray() }
-                .toTypedArray()
+                .map { it.sortedBy { -it } }
     }
 
-    fun solve1(input: Array<Array<Int>>): Int = input.map { it.first() - it.last()}.sum()
+    fun solve1(input: List<List<Int>>): Int = input.map { it.first() - it.last()}.sum()
 
-    fun solve2(input: Array<Array<Int>>): Int {
+    fun solve2(input: List<List<Int>>): Int {
         return input.map { row ->
-            row.mapIndexed { i, n ->
-                (i+1 until row.size).map { j -> n / row[j].toDouble() }.filter { it % 1 == 0.0 }
-            }.flatMap { it }
-        }.flatMap { it }.sum().toInt()
+            row.combinations(2).map { it[0].toDouble() / it[1].toDouble() }.find { it % 1 == 0.0 } ?: 0.0
+        }.sum().toInt()
     }
 
     @JvmStatic
