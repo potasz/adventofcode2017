@@ -43,7 +43,7 @@ object Puzzle07 {
             with (m.destructured) {
                 val name = component1()
                 val weight = component2().toInt()
-                val children = if (component3().isEmpty()) mutableListOf<String>() else component3().split(",").map { it.trim() }
+                val children = if (component3().isEmpty()) mutableListOf() else component3().split(", ")
                 val disc = discMap.getOrPut(name, { Disc(name) })
                 disc.weight = weight
                 val childList = children.map { discMap.getOrPut(it, { Disc(it) }).apply { this.parent = disc } }
