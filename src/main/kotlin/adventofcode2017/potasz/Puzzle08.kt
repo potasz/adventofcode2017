@@ -64,7 +64,7 @@ object Puzzle08 {
             }
         }
 
-        return (context.entries.maxBy { it.component2() }?.component2() ?: 0) to max
+        return (context.values.max() ?: 0) to max
     }
 
     @JvmStatic
