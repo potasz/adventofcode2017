@@ -9,46 +9,36 @@ object Puzzle09 {
             "{{<a>},{<a>},{<a>},{<a>}}", "{{<!>},{<!>},{<!>},{<a>}}", "{{<!!>},{<!!>},{<!!>},{<!!>}}",
             "{{<a!>},{<a!>},{<a!>},{<ab>}}")
 
-    fun groupsAndGarbage(input: InputStream, value: Int): Pair<Int, Int> {
-        var nextByte = input.read()
-        var groupCount = 0
+    fun scoreAndGarbage(stream: InputStream): Pair<Int, Int> {
+        var score = 0
+        var depth = 0
         var garbage = false
         var skipNext = false
         var garbageCounter = 0
-        while (nextByte != -1) {
-            val char = nextByte.toChar()
-            if (!skipNext && char == '!') {
-                skipNext = true
-            } else if (skipNext) {
-                skipNext = false
-            } else if (garbage) {
-                if (char == '>') {
-                    garbage = false
-                } else {
-                    garbageCounter++
-                }
-            } else when (char) {
+        var char = stream.read().toChar()
+        while (char != (-1).toChar()) {
+            if (!skipNext && char == '!') skipNext = true
+            else if (skipNext) skipNext = false
+            else if (garbage && char == '>') garbage = false
+            else if (garbage) garbageCounter++
+            else when (char) {
                 '<' -> garbage = true
-                '{' -> {
-                    val res = groupsAndGarbage(input, value + 1)
-                    groupCount += value + 1 + res.first
-                    garbageCounter += res.second
-                }
-                '}' -> return groupCount to garbageCounter
+                '{' -> score += depth++ + 1
+                '}' -> depth--
             }
-            nextByte = input.read()
+            char = stream.read().toChar()
         }
-        return groupCount to garbageCounter
+        return score to garbageCounter
     }
 
     @JvmStatic
     fun main(args: Array<String>) {
         samples.forEach { sample ->
             val bis = ByteInputStream(sample.toByteArray(), sample.length)
-            println(groupsAndGarbage(bis, 0))
+            println(scoreAndGarbage(bis))
         }
 
         val input = javaClass.getResourceAsStream("/input09.txt")
-        println(groupsAndGarbage(input, 0))
+        println(scoreAndGarbage(input))
     }
 }
