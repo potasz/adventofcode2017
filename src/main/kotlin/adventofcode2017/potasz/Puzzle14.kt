@@ -1,31 +1,32 @@
 package adventofcode2017.potasz
 
-object Puzzle14 {
+import java.util.stream.Collectors
+import java.util.stream.IntStream
 
-    fun Int.pow(exp: Int): Int = Math.pow(this.toDouble(), exp.toDouble()).toInt()
+object Puzzle14 {
 
     fun String.toBinary(): BooleanArray = this
             .map { it.toString().toInt(16) }
             .flatMap { num -> listOf(8, 4, 2, 1).map { num and it == it } }
             .toBooleanArray()
 
-    fun bitMatrix(input: String): Array<BooleanArray> = (0..127)
-            .map { "$input-$it" }
+    fun bitMatrix(input: String): Array<BooleanArray> = IntStream.range(0, 128)
+            .parallel()
+            .mapToObj { "$input-$it" }
             .map { Puzzle10.knotHash(it).toBinary() }
+            .collect(Collectors.toList())
             .toTypedArray()
 
     fun solve1(input: String): Int = bitMatrix(input).sumBy { it.count { it } }
 
     fun solve2(input: String): Int {
         val bitMatrix = bitMatrix(input)
-        val groups = Array(bitMatrix.size, { IntArray(bitMatrix.size) })
-        findGroups(bitMatrix, groups)
-        return groups.map { it.max() ?: 0 }.max() ?: 0
-
+        return findGroups(bitMatrix)
     }
 
-    fun findGroups(bitMatrix: Array<BooleanArray>, groups: Array<IntArray>) {
+    fun findGroups(bitMatrix: Array<BooleanArray>): Int {
         var nextGroup = 1
+        val groups = Array(bitMatrix.size, { IntArray(bitMatrix.size) })
         for (i in 0 until bitMatrix.size) {
             for (j in 0 until bitMatrix[i].size) {
                 if (bitMatrix[i][j] && groups[i][j] == 0) {
@@ -34,6 +35,8 @@ object Puzzle14 {
                 }
             }
         }
+
+        return nextGroup - 1
     }
 
     private fun findAdjacent(i: Int, j: Int, bitMatrix: Array<BooleanArray>, groups: Array<IntArray>, groupLabel: Int) {
