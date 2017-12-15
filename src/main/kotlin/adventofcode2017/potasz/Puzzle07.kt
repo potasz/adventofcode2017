@@ -29,10 +29,10 @@ object Puzzle07 {
         if (unBalanced != null && unBalanced.totalWeight != avg.toInt()) {
             findUnbalanced(unBalanced)
         } else {
-            val sibling = node.parent!!.children!!.find { it.name != node.name }
+            val sibling = node.parent!!.children.find { it.name != node.name }
             val diff = node.totalWeight - sibling!!.totalWeight
             println("Unbalanced: $node")
-            println("  Sibling total weight: ${sibling!!.totalWeight}. New weight: ${node.weight - diff}")
+            println("  Sibling total weight: ${sibling.totalWeight}. New weight: ${node.weight - diff}")
         }
     }
 
