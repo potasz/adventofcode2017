@@ -9,7 +9,7 @@ data class Partner(val nameA: Char, val nameB: Char): Move()
 
 object Puzzle16 {
 
-    fun solve1(input: String, moves: List<Move>, repeat: Int = 1): String {
+    fun dance(input: String, moves: List<Move>, repeat: Int = 1): String {
         val dancers = input.toCharArray()
         repeat(repeat) {
             moves.forEach { move ->
@@ -40,8 +40,8 @@ object Puzzle16 {
     private fun String.toMove(): Move = when(this.first()) {
         's' -> Spin(this.drop(1).toInt())
         'x' -> {
-            val parts = this.drop(1).split("/")
-            Exchange(parts[0].toInt(), parts[1].toInt())
+            val (a,b) = this.drop(1).split("/")
+            Exchange(a.toInt(), b.toInt())
         }
         'p' -> Partner(this[1], this[3])
         else -> throw IllegalArgumentException("Unknown this: $this")
@@ -54,11 +54,11 @@ object Puzzle16 {
     fun main(args: Array<String>) {
         val time = measureTimeMillis {
             // Part1
-            println(solve1(dancers, moves))
+            println(dance(dancers, moves))
             // Part2
-            val floyd = Puzzle06.floyd({x -> solve1(x, moves)}, dancers)
+            val floyd = Puzzle06.floyd({x -> dance(x, moves)}, dancers)
             val remainder = 1000_000_000 % floyd.first
-            println(solve1(dancers, moves, repeat = remainder))
+            println(dance(dancers, moves, repeat = remainder))
         }
         println(time)
     }
