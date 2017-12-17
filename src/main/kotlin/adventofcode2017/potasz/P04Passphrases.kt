@@ -1,6 +1,6 @@
 package adventofcode2017.potasz
 
-object Puzzle04 {
+object P04Passphrases {
 
 
     fun solve1(lines: List<List<String>>): Int = lines.filter {

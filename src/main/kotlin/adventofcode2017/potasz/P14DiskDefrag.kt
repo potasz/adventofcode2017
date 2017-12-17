@@ -3,7 +3,7 @@ package adventofcode2017.potasz
 import java.util.stream.Collectors
 import java.util.stream.IntStream
 
-object Puzzle14 {
+object P14DiskDefrag {
 
     fun String.toBinary(): BooleanArray = this
             .map { it.toString().toInt(16) }
@@ -13,7 +13,7 @@ object Puzzle14 {
     fun bitMatrix(input: String): Array<BooleanArray> = IntStream.range(0, 128)
             .parallel()
             .mapToObj { "$input-$it" }
-            .map { Puzzle10.knotHash(it).toBinary() }
+            .map { P10KnotHash.knotHash(it).toBinary() }
             .collect(Collectors.toList())
             .toTypedArray()
 

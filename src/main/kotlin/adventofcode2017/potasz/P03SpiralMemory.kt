@@ -5,7 +5,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 // http://adventofcode.com/2017/day/3
-object Puzzle03 {
+object P03SpiralMemory {
 
     data class Move(val x: Int, val y: Int)
 

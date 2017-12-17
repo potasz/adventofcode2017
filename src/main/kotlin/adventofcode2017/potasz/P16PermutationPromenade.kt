@@ -56,7 +56,7 @@ object Puzzle16 {
             // Part1
             println(dance(dancers, moves))
             // Part2
-            val floyd = Puzzle06.floyd({x -> dance(x, moves)}, dancers)
+            val floyd = P06MemoryReallocation.floyd({ x -> dance(x, moves)}, dancers)
             val remainder = 1000_000_000 % floyd.first
             println(dance(dancers, moves, repeat = remainder))
         }

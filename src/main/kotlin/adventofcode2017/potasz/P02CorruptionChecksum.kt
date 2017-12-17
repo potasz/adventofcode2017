@@ -1,7 +1,7 @@
 package adventofcode2017.potasz
 
 // http://adventofcode.com/2017/day/2
-object Puzzle02 {
+object P02CorruptionChecksum {
     val input = "116\t1470\t2610\t179\t2161\t2690\t831\t1824\t2361\t1050\t2201\t118\t145\t2275\t2625\t2333\n" +
             "976\t220\t1129\t553\t422\t950\t332\t204\t1247\t1092\t1091\t159\t174\t182\t984\t713\n" +
             "84\t78\t773\t62\t808\t83\t1125\t1110\t1184\t145\t1277\t982\t338\t1182\t75\t679\n" +

@@ -1,6 +1,6 @@
 package adventofcode2017.potasz
 
-object Puzzle17 {
+object P17Splinlock {
 
     fun solve(jump: Int): Int {
         val buffer = mutableListOf(0)

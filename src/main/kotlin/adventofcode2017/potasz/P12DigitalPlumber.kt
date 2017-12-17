@@ -1,6 +1,6 @@
 package adventofcode2017.potasz
 
-object Puzzle12 {
+object P12DigitalPlumber {
 
     data class Program(val id: Int, val peers: MutableSet<Int> = mutableSetOf())
 

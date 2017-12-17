@@ -3,7 +3,7 @@ package adventofcode2017.potasz
 import com.sun.xml.internal.messaging.saaj.util.ByteInputStream
 import java.io.InputStream
 
-object Puzzle09 {
+object P09StreamProcessing {
 
     val samples = listOf("{}", "{{},{}}", "{{{}}}", "{{{},{},{{}}}}", "{<{},{},{{}}>}", "{<a>,<a>,<a>,<a>}",
             "{{<a>},{<a>},{<a>},{<a>}}", "{{<!>},{<!>},{<!>},{<a>}}", "{{<!!>},{<!!>},{<!!>},{<!!>}}",

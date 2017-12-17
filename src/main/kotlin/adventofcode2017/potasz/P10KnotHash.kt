@@ -1,6 +1,6 @@
 package adventofcode2017.potasz
 
-object Puzzle10 {
+object P10KnotHash {
     val SUFFIX = listOf(17, 31, 73, 47, 23)
 
     val sampleLengths = arrayListOf(3, 4, 1, 5)

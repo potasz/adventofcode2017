@@ -2,7 +2,7 @@ package adventofcode2017.potasz
 
 import kotlin.math.abs
 
-object Puzzle07 {
+object P07TowerOfDiscs {
 
     data class Disc(val name: String, var weight: Int = 0, var totalWeight: Int = 0, var children: List<Disc> = emptyList(),
                     var parent: Disc? = null) {

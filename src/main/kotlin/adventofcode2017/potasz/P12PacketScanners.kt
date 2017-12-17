@@ -1,6 +1,6 @@
 package adventofcode2017.potasz
 
-object Puzzle13 {
+object P12PacketScanners {
     val sample = listOf(0 to 3, 1 to 2, 4 to 4, 6 to 4)
 
     fun solve1(layers: List<Pair<Int, Int>>): Int =

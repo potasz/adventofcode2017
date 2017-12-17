@@ -1,6 +1,6 @@
 package adventofcode2017.potasz
 
-object Puzzle06 {
+object P06MemoryReallocation {
 
     val sample = arrayListOf(0, 2, 7, 0)
 

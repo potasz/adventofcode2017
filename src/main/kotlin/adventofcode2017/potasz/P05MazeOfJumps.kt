@@ -1,6 +1,6 @@
 package adventofcode2017.potasz
 
-object Puzzle05 {
+object P05MazeOfJumps {
 
     val input: () -> IntArray = {
         javaClass.getResourceAsStream("/input05.txt")

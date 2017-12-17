@@ -2,7 +2,7 @@ package adventofcode2017.potasz
 
 import kotlin.coroutines.experimental.buildIterator
 
-object Puzzle15 {
+object P15DuelGenerators {
 
     val A = 16807L
     val B = 48271L

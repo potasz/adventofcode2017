@@ -3,7 +3,7 @@ package adventofcode2017.potasz
 import kotlin.math.abs
 import kotlin.math.max
 
-object Puzzle11 {
+object P11HexEd {
 
     data class Point(val x: Int, val y: Int) {
         operator fun plus(move: Move): Point = Point(x + move.x, y + move.y)
