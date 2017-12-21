@@ -40,7 +40,7 @@ class Lte(reg: String, number: Int): Expr<Boolean>(reg, number, { it <= number }
 class Gt(reg: String, number: Int): Expr<Boolean>(reg, number, { it > number})
 class Gte(reg: String, number: Int): Expr<Boolean>(reg, number, { it >= number})
 
-object Puzzle08 {
+object P08Registers {
 
     // c inc -20 if c == 10
     val PATTERN = """(\w+)\s(inc|dec)\s([-0-9]+)\sif\s(\w+)\s([!=<>]+)\s([-0-9]+)""".toRegex()
