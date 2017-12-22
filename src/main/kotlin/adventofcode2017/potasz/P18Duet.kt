@@ -78,12 +78,12 @@ object P18Duet {
     }
 
     class Messages {
-        private val QUEUE_SIZE = 1000_000
+        private val QUEUE_SIZE = 1000
         private val queues = ConcurrentHashMap<Int, BlockingQueue<Long>>()
         private val sendCounters = mutableMapOf<Int, LongAdder>()
 
-        fun send(to: Int, value: Long) {
-            sendCounters.getOrPut(to, { LongAdder() }).increment()
+        fun send(id: Int, to: Int, value: Long) {
+            sendCounters.getOrPut(id, { LongAdder() }).increment()
             queues.computeIfAbsent(to, { ArrayBlockingQueue(QUEUE_SIZE) }).add(value)
         }
 
@@ -100,7 +100,7 @@ object P18Duet {
             while (ip < intructions.size) {
                 val instr = intructions[ip++]
                 when (instr) {
-                    is SND -> messagesBus.send(peerId, instr.value.eval(ctx))
+                    is SND -> messagesBus.send(id, peerId, instr.value.eval(ctx))
                     is SET -> ctx[instr.reg] = instr.value.eval(ctx)
                     is ADD -> ctx[instr.reg] = ctx.getReg(instr.reg) + instr.value.eval(ctx)
                     is MUL -> ctx[instr.reg] = ctx.getReg(instr.reg) * instr.value.eval(ctx)
