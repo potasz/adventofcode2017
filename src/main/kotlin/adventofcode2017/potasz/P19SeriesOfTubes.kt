@@ -11,6 +11,7 @@ object P19SeriesOfTubes {
     data class Direction(val x: Int, val y: Int)
     data class Move(val ahead: Direction, val left: Direction, val right: Direction)
 
+    // y direction is mirrored to be aligned with the diagram
     val DOWN = Move(Direction(0, 1), Direction(1, 0), Direction(-1, 0))
     val RIGHT = Move(Direction(1, 0), Direction(0, -1), Direction(0, 1))
     val UP = Move(Direction(0, -1), Direction(-1, 0), Direction(1, 0))
@@ -19,7 +20,7 @@ object P19SeriesOfTubes {
     @JvmStatic
     fun main(args: Array<String>) {
         val lines = readLines("input19.txt")
-        val length = lines.maxBy { it.length }?.length ?: 0
+        val length = lines.maxBy { it.length }!!.length
         val diagram = lines.map { it.padEnd(length) }.map { it.toCharArray() }.toTypedArray()
         val start = Position(1,0)
         var dir = DOWN
@@ -30,7 +31,7 @@ object P19SeriesOfTubes {
             if (char.isLetter()) print(char)
             else if (char == '+') {
                 val ahead = if((pos + dir.left).isValid(diagram)) dir.left else dir.right
-                dir = listOf(DOWN, RIGHT, UP, LEFT).find { it.ahead == ahead } ?: throw RuntimeException("No move found: $ahead")
+                dir = listOf(DOWN, RIGHT, UP, LEFT).find { it.ahead == ahead }!!
             }
             steps++
             pos += dir.ahead
